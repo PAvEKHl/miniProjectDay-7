@@ -17,15 +17,52 @@ interface userSearchInterface {
     requestSortData : string, */
 }
 // посмотреть что это и стараться использватьс такую запись FC<userSearchInterface>
+// переделать лоигку фильтрации и сортировкеи
 export function  DataControls({userArray}: userSearchInterface){
 
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [filterType, setFilterType] = useState<string>("default")
     const [sortType, setSortType] = useState<string>("default")
-    let resultData = [...userArray]
-    resultData = userSearch({userArray: resultData, searchData: searchQuery})
-    resultData = userFilter({userArray: resultData, typeFilter: filterType})
-    resultData = userSort({userArray: resultData, typeSort: sortType})
+    const [filteredUsersData, setFilteredUsersData] = useState(userArray);
+
+
+    const handleFilter = useCallback((filter: string) => {
+        
+        switch(filter) {
+    
+            case 'FirstId': {
+                setFilteredUsersData((prev) => prev.filter((user) user.id === 1)
+            }
+            case 'geoLat40-60': {
+                setFilteredUsersData((prev) => ...)
+            }
+
+            default: {
+                setFilteredUsersData(userArray);
+            }
+        }
+                
+    }, [userArray]);
+        
+
+
+    
+    
+// сделать по аналогии 
+    const handleSort = (sort: string) => {
+        switch(filter) {
+    
+            case 'FirstId': {
+                setFilteredUsersData((prev) => prev.filter((user) user.id === 1)
+            }
+            case 'geoLat40-60': {
+                setFilteredUsersData((prev) => ...)
+            }
+    
+        }
+    }
+
+}
 
     return ( 
         <div> 
@@ -39,14 +76,14 @@ export function  DataControls({userArray}: userSearchInterface){
             </div>
             {/*Блок Фильтрации*/}
             <div>
-                <button onClick = {() => setFilterType("FirstId")}> Данные 1-го Id</button>
-                <button onClick = {() => setFilterType("geoLat40-60")}> Ширина 40-60</button>
+                <button onClick = {() => handleFilter("FirstId")}> Данные 1-го Id</button>
+                <button onClick = {() => handleFilter("geoLat40-60")}> Ширина 40-60</button>
             </div>
             {/*Блок Сортировки*/}
             <div>
-                <button onClick = {() => setSortType("byUserName")}> Сортировка по Имени (алфовитный)</button>
-                <button onClick = {() => setSortType("byEmail")}> Сортировка по Email(алфовитный)</button>
-                <button onClick = {() => setSortType("byZipcodeAscending")}> Сортировка по zipcode(обратный)</button>
+                <button onClick = {() => handleSort("byUserName")}> Сортировка по Имени (алфовитный)</button>
+                <button onClick = {() => handleSort("byEmail")}> Сортировка по Email(алфовитный)</button>
+                <button onClick = {() => handleSort("byZipcodeAscending")}> Сортировка по zipcode(обратный)</button>
             </div>
            <ul>
                 {resultData.map(user => {
