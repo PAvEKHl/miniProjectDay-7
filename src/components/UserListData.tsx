@@ -3,6 +3,7 @@ import {DataParsing} from '../dataParsing/DataParsing'
 import { UserItem } from "./UserItem";
 import {DataControls} from './DataControls'
 
+//CamelCase IUserList...
 interface userListDataInterface {
     userArray: userData[], //т.к. filter/sort работает с масссивами
 }  
@@ -21,6 +22,7 @@ export function UserListData(){
     
     return (
         <div>
+            //users
             <DataControls userArray = {user} /> 
         </div>
     )
