@@ -5,7 +5,8 @@ import {userData} from '../typesInterface/UserInterface'
 
 //Добавлять use если это хук, useGetUser, return type(посмотри в доке)  
 export function DataParsing()  {
-    
+
+    //users
     const[user, setUser] = useState<userData[]>([]) //массив обьектов
     //isLoading, setIsLoading
     const[waitingLoad, setWaitingLoad] = useState<boolean>(true) //ожидание HTTP ответа
@@ -29,5 +30,6 @@ export function DataParsing()  {
         }
         ParsingData()
     }, [])
+    //users
     return ({user,waitingLoad,error}) //возврощаем состояния хуков
 }
