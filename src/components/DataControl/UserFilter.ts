@@ -9,8 +9,8 @@ export function userFilter({userArray, typeFilter} : userSearchInterface){
     if(filterRequest == "FirstId"){
         return filteredArray = filteredArray.filter((user) => user.id == 1)
     }
-    if (filterRequest == "geoLat40-60"){
-        return (filteredArray = filteredArray.filter((e) => e.address.geo.lat > 40 && e.address.geo.lat < 60)
+    if (filterRequest == "geoLat10-60"){
+        return (filteredArray = filteredArray.filter((e) => e.address.geo.lat > 10 && e.address.geo.lat < 60)
         )
     }
     return filteredArray

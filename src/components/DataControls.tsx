@@ -43,7 +43,11 @@ export function  DataControls({userArray}: userSearchInterface){
                 <button onClick = {() => setSortType("byEmail")}> Сортировка по Email(алфовитный)</button>
                 <button onClick = {() => setSortType("byZipcodeAscending")}> Сортировка по zipcode(обратный)</button>
             </div>
-            <UserItem user = {resultData} /> {/* как и куда отправлять resultData - итоговый массив*/}
+           <ul>
+                {resultData.map(user => {
+                    return <UserItem key = {user.id} user = {user} />
+            })}
+            </ ul>
         </div>
 
     )

@@ -1,15 +1,15 @@
 import {useState,useEffect} from 'react'
-import {userHooks} from '../hooks/UserHooksForParsing'
+import {UserHooks} from '../hooks/UserHooksForParsing'
 import {userData} from '../typesInterface/UserInterface'
 
-export function dataParsing(){
+export function DataParsing(){
     const[user, setUser] = useState<userData[]>([]) //массив обьектов
     const[waitingLoad, setWaitingLoad] = useState<boolean>(true) //ожидание HTTP ответа
     const [error, setError] = useState<null | string>(null)
     useEffect(() => {
         async function ParsingData() {
             try{
-                const user = await userHooks() 
+                const user = await UserHooks() 
                 setUser(user)
                 setWaitingLoad(false)
             }
