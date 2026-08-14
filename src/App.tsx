@@ -3,7 +3,7 @@ import {UserListData} from './components/UserListData'
 function App() {
   return (
     <div>
-      <UserListData />
+      <UserListData /> //Здесь обычно импортится файл с роута, ex Routex.tsx 
     </div>
   );
 }
