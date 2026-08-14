@@ -8,12 +8,17 @@ import { UserItem } from "./UserItem";
 // import {userListData} from './UserListData'
 interface userSearchInterface {
     userArray: userData[], //т.к. filter/sort работает с масссивами
+    
+    // убирать комменты, оставлять только там где нужны 
+    
     /* на случай если в  UseState неполучиться
     requestFilterData : string,
     requestSearchData : string,
     requestSortData : string, */
 }
+// посмотреть что это и стараться использватьс такую запись FC<userSearchInterface>
 export function  DataControls({userArray}: userSearchInterface){
+
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [filterType, setFilterType] = useState<string>("default")
     const [sortType, setSortType] = useState<string>("default")
