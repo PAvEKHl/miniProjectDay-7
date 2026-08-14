@@ -1,6 +1,6 @@
 import {userData} from '../typesInterface/UserInterface'
 
-//Naming, useGetUser. 
+//Naming, getUser. 
 export async function UserHooks(): Promise<userData[] | null > {
     // try catch - потенциально может стрельбнукт 
     try {
