@@ -18,7 +18,7 @@ export function userSort({userArray, typeSort} : userItemProps){
     }
     if(sortRequest== 'byZipcodeAscending'){ //Убывание по zipcode
         return sortArray.sort((a,b) => 
-            b.address.zipcode.localeCompare(a.address.zipcode,undefined , {numeric:  true})
+            b.address.zipcode.localeCompare(a.address.zipcode,undefined, {numeric:  true})
         )
     } 
     return sortArray
