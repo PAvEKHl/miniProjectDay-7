@@ -1,29 +1,33 @@
 import {useState} from 'react'
+
 import {userData} from '../typesInterface/UserInterface'
 
 import {userFilter} from './DataControl/UserFilter'
 import {userSearch} from './DataControl/UserSearch'
 import {userSort} from './DataControl/UserSort'
+
 import { UserItem } from "./UserItem";
 // import {userListData} from './UserListData'
 interface userSearchInterface {
-    userArray: userData[], //т.к. filter/sort работает с масссивами
-    /* на случай если в  UseState неполучиться
-    requestFilterData : string,
-    requestSearchData : string,
-    requestSortData : string, */
+    usersArray: userData[], //т.к. filter/sort работает с масссивами
 }
-export function  DataControls({userArray}: userSearchInterface){
+export function  UsersDataControls({usersArray}: userSearchInterface){
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [filterType, setFilterType] = useState<string>("default")
     const [sortType, setSortType] = useState<string>("default")
-    let resultData = [...userArray]
+    let resultData = [...usersArray]
     resultData = userSearch({userArray: resultData, searchData: searchQuery})
     resultData = userFilter({userArray: resultData, typeFilter: filterType})
     resultData = userSort({userArray: resultData, typeSort: sortType})
 
     return ( 
         <div> 
+            <input 
+                placeholder='Find a user by name' 
+                value={searchQuery}
+                onChange= {(e) => setSearchQuery(e.target.value)}>
+                
+            </input>
             {/*Блок поиска*/}
             <div> 
                 <button onClick = {() => {
@@ -34,16 +38,19 @@ export function  DataControls({userArray}: userSearchInterface){
             </div>
             {/*Блок Фильтрации*/}
             <div>
+                <h1>Фильтры</h1>
                 <button onClick = {() => setFilterType("FirstId")}> Данные 1-го Id</button>
-                <button onClick = {() => setFilterType("geoLat40-60")}> Ширина 40-60</button>
+                <button onClick = {() => setFilterType("geoLat10-60")}> Ширина 40-60</button>
             </div>
             {/*Блок Сортировки*/}
             <div>
+                <h1>Сортировка</h1>
                 <button onClick = {() => setSortType("byUserName")}> Сортировка по Имени (алфовитный)</button>
                 <button onClick = {() => setSortType("byEmail")}> Сортировка по Email(алфовитный)</button>
                 <button onClick = {() => setSortType("byZipcodeAscending")}> Сортировка по zipcode(обратный)</button>
             </div>
-           <ul>
+            <h1>Список пользователей</h1>
+            <ul>
                 {resultData.map(user => {
                     return <UserItem key = {user.id} user = {user} />
             })}
